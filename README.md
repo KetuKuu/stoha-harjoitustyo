@@ -14,7 +14,7 @@ Sovelluksessa näkyy mantereet listattuna sivupalkissa. Jokaisen mantereen alla 
 * Ylläpitäjä voi luoda kategorioita, joihin haasteet voi luokitella. Haaste voi kuulua yhteen tai useampaan kategoriaan.
 
 # Käynistysohjeet
-1. Kloonaa tämä repositorio omalle koneellesi ja siirry sovells kansioon.
+1. Kloonaa tämä repositorio omalle koneellesi ja siirry Challenge-app kansioon.
 2. Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
    
 `DATABASE_URL=<tietokannan-paikallinen-osoite>`
