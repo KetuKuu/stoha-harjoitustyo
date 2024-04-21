@@ -14,27 +14,32 @@ Sovelluksessa näkyy mantereet listattuna sivupalkissa. Jokaisen mantereen alla 
 * Ylläpitäjä voi luoda kategorioita, joihin haasteet voi luokitella. Haaste voi kuulua yhteen tai useampaan kategoriaan.
 
 # Käynistysohjeet
-1. Kloonaa tämä repositorio omalle koneellesi ja siirry sovells kansioon.
+1. Kloonaa tämä repositorio omalle koneellesi ja siirry Challenge-app kansioon.
 2. Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
    
-`DATABASE_URL=<tietokannan-paikallinen-osoite>`
+   `DATABASE_URL=<tietokannan-paikallinen-osoite>`
 
-`SECRET_KEY=<salainen-avain>`
+   `SECRET_KEY=<salainen-avain>`
+
 
 3. Seuraavaksi aktivoi virtuaaliympäristö ja asenna sovelluksen riippuvuudet komennoilla
    
-**<p>$ python3 -m venv venv</p>**
-**<p>$ source venv/bin/activate</p>**
-**<p>$ pip install -r ./requirements.txt</p>**
+   **<p>$ python3 -m venv venv</p>**
+   **<p>$ source venv/bin/activate</p>**
+   **<p>$ pip install -r ./requirements.txt</p>**
 
 4. Määritä vielä tietokannan skeema komennolla
    
-**<p>psql < schemaPolls.sql</p>**
-**<p>psql < schemaUser.sql</p>**
+   **<p>psql < schemaPolls.sql</p>**
+   **<p>psql < schemaUser.sql</p>**
 
-5. Nyt voit käynnistää sovelluksen komennolla
+5. Voit asentaa virtuaaliympäristöönsä tarvittavat kirjastot seuraavalla komennolla:
    
-**$ flask run**
+   **pip install -r requirements.txt**
+
+6. Nyt voit käynnistää sovelluksen komennolla
+   
+   **$ flask run**
 
 # Nykyinen tilanne
 
