@@ -22,3 +22,10 @@ CREATE TABLE answers (
     choice_id INTEGER REFERENCES choices,
     sent_at TIMESTAMP
 );
+
+CREATE TABLE completions (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    region TEXT,
+    completion_date TIMESTAMP DEFAULT NOW()
+);
