@@ -89,6 +89,21 @@
         .card h2 {
             margin-top: 10px;
         }
+        .done-button {
+            padding: 8px 16px;
+            border: none;
+            background-color: gray;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            margin-top: 10px;
+        }
+
+        .done-button.active {
+            background-color: green;
+        }
+
     </style>
 </head>
 <body>
@@ -97,12 +112,13 @@
     </header>
     
     <div class="top-links">
-        {% if session.username %}
+        {% if session.get("username") %}
         <p><a href="/Frontpage" class="active">Home</a></p>
-        <a href="#">Mypages</a>
+        <p><a href="/myinfo">Mypages</a></p>
         <p><a href="/polls">Polls</a></p>
-        <a href="#">{{ session.username }}</a>
-        <p></p><a href="/logout">Log Out</a></p>
+        <a>Olet kirjautunut nimellä {{ session.username }}</a>
+        <!--<a href="#">{{ session.username }}</a>-->
+        <a href="/logout">Log Out</a>
         {% else %}
         <p><a href="/loging">Sign In</a></p>
         {% endif %}
@@ -123,15 +139,44 @@
         </nav>
         <section>
             <div class="card">
-                <img src="{{ url_for('static', filename='maapallo.jpg') }}" alt="Image">
+                <a href="/europe1">
+                    <img src="{{ url_for('static', filename='maapallo.jpg') }}" alt="10 Most Beautiful Castles in Germany">
+                </a>
                 <h2>10 Most Beautiful Castles in Germany</h2>
+                {% if session.username %}
+                <form method="post" action="/mark-done">
+                    <input type="hidden" name="region" value="Europe">
+                    <input type="hidden" name="card_id" value="1"> 
+                    <button type="submit"> Done</button>
+                <!--<input type="checkbox"> -->
+                </form>
+                
+                {% endif %}
                 <p>Description of destination 1.</p>
             </div>
             <div class="card">
+                <a href="/europe1">
+                    <img src="{{ url_for('static', filename='maapallo.jpg') }}" alt="10 Most Beautiful Castles in Germany">
+                </a>
+                <h2>10 Most Beautiful Castles in Germany</h2>
+                {% if session.username %}
+                <form method="post" action="/mark-done">
+                    <input type="hidden" name="region" value=" America">
+                    <input type="hidden" name="card_id" value="2"> 
+                    <button type="submit" onclick="toggleDone(this)"> Done</button>
+                   <!--  <input type="checkbox"> -->
+                </form>
+                
+                {% endif %}
+                <p>Description of destination 1.</p>
+            </div>
+            <!--<div class="card">
                 <img src="https://via.placeholder.com/300x200" alt="Image">
                 <h2>Destination Name 2</h2>
                 <p>Description of destination 2.</p>
-            </div>
+                <button class="done-button" onclick="toggleDone(this)">Done</button>
+                <button class="like-button">❤</button>
+            </div>-->
             <!-- Lisää samanlaisia kortteja tarvittaessa -->
         </section>
     </main>
