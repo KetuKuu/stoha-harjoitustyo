@@ -1,14 +1,14 @@
 # Bucket list /travel challenge sovellus
 
 
-Sovelluksessa näkyy mantereet listattuna sivupalkissa. Jokaisen mantereen alla avautuu etusivulle "sort"-toiminto hyväksyvä kuvaruutu haasteista: haasteen nimi (esim. "24 parasta kohdetta Portugalissa") ja mahdollisuus tykätä kohteesta, minkä jälkeen se näkyy käyttäjän profiilissa. Näkyy myös "suoritettu", minkä jälkeen käyttäjäprofiilissä näkyy prosentti esim. "Europa 6/24 (24%)". Lisäksi voisi olla mahdollisuus jakaa sovelluksessa näkyviä haasteita ja ehkä kategorisoida myös haasteet. Klikkaamalla haasteen auki voi lukea haastekuvauksen ja nähdä haasteen. Haasteessa pystyy klikkaamaan jokaista haasteen sisältämää kohdetta erikseen suoritetuksi (näkyy käyttäjäprofiilissä klikkaamalla "vierailut") ja nähdä kartan (kartta sijainti mahdollisesti maksullinen myöhemmin). Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
+Sovelluksessa näkyy mantereet listattuna sivupalkissa. Jokaisen mantereen alla avautuu etusivulle "sort"-toiminto hyväksyvä kuvaruutu haasteista: haasteen nimi (esim. "24 parasta kohdetta Portugalissa") ja mahdollisuus tykätä kohteesta, minkä jälkeen se näkyy käyttäjän profiilissa. Näkyy myös "suoritettu", minkä jälkeen käyttäjäprofiilissä näkyy prosentti esim. "Europa 6/24 (24%)". Jatkokehityksenä voisi olla mahdollisuus jakaa sovelluksessa näkyviä haasteita ja ehkä kategorisoida myös haasteet. Klikkaamalla haasteen auki voi lukea haastekuvauksen ja nähdä haasteen. Haasteessa pystyy klikkaamaan jokaista haasteen sisältämää kohdetta erikseen suoritetuksi (näkyy käyttäjäprofiilissä klikkaamalla "vierailut") ja nähdä kartan (kartta sijainti mahdollisesti maksullinen myöhemmin). Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
 
 
-* Käyttäjä voi kirjautua sisään ja ulos ☑ sekä luoda uuden tunnuksen.
-* Käyttäjä näkee mantereen (useita) ☑ → haasteet kuvauksineen (useita haasteita) → haasteen ja kartan
-* Käyttäjä voi lisätä haasteita lempilistalleen, merkitä suoritetuksi (Extra: jakaa sosiaalisessa mediassa) ja nähdä, montako käyttäjää on suorittanut haasteen (numerolla, ei käyttäjänimillä).
+* Käyttäjä voi kirjautua sisään ja ulos ☑
+* Käyttäjä näkee mantereen (useita) ☑ → haasteet kuvauksineen (useita haasteita) ☑  → haasteen ja kartan ☑ 
+* Käyttäjä voi lisätä haasteita lempilistalleen, merkitä suoritetuksi ☑ (Extra: jakaa sosiaalisessa mediassa) ja nähdä yhteenveton haasteista omalla sivulla ☑.
 * Ylläpitäjä voi lisätä ja poistaa haasteita sekä määrittää haasteesta näytettävät tiedot. Ylläpitäjä voi tarvittaessa poistaa käyttäjän suorittaman haasteen.
-* Käyttäjä voi luoda ja muokata omia lisäämiään haasteita sekä määrittää näytettävät tiedot (paitsi kartta).
+* Käyttäjä voi luoda ☑ ja muokata omia lisäämiään haasteita sekä määrittää näytettävät tiedot (paitsi kartta).
 * Käyttäjä voi etsiä kaikki haasteet, joiden kuvauksessa on annettu sana.
 * Käyttäjä näkee ja pystyy suodattamaan haasteet aakkos-, suosikki-, ja kategoriajärjestyksessä.
 * Ylläpitäjä voi luoda kategorioita, joihin haasteet voi luokitella. Haaste voi kuulua yhteen tai useampaan kategoriaan.
@@ -45,3 +45,5 @@ Sovelluksessa näkyy mantereet listattuna sivupalkissa. Jokaisen mantereen alla 
 
 Sovellus on vielä keskeneräinen. Sovelluksen käynnistyessä avautuu etusivu, Frontpage: Login-linkistä pääsee kirjautumaan sovellukseen, jonka jälkeen käyttäjälle avautuvat yläpalkit Home, Mypages, Polls, kirjautuneen käyttäjän käyttäjätunnus ja Log Out. Home, Polls ja Log Out toimivat. Sivun vasen palkki ja haastenäkymä eivät toimi vielä.
 
+##Tilanne päivitys
+Haastenäkymä toimi. Käyttäjä voi luoda haasteen ja merkata haasteen suoritetuksi. Mypages-sivulla voi seurata suoritettu haasteita
