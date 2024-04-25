@@ -1,0 +1,15 @@
+<form method="POST" action="/created" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="description" placeholder="Description" required></textarea>
+    <select name="region" required>
+        <option value="">Valitse alue</option>
+        <option value="Europe">Europe</option>
+        <option value="Asia">Asia</option>
+        <option value="North America">North America</option>
+        <option value="South America">Places in South America</option>
+        <option value="Australia and Oceania">Places in Australia and Oceania</option>
+        <option value="Africa">Africa</option>
+    </select>
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit">Luo haaste</button>
+</form>

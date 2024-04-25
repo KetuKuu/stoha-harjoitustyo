@@ -138,8 +138,34 @@
             </div>
         </nav>
         <section>
+            {% if session.username %}
             <div class="card">
-                <a href="/europe1">
+                <a href="/addcard">
+                <img src="https://via.placeholder.com/300x200" alt="Image">
+            </a>
+                <h2>Add your challenge</h2>
+           
+            <!-- Lisää samanlaisia kortteja tarvittaessa -->
+            </div>
+            {% endif %}
+            {% for card in cards %}
+            <div class="card">
+                <a href="/card/{{ card.id }}/{{ card.region }}">  <!-- Oletetaan, että jokaisella kortilla on uniikki ID -->
+                    <img src="{{ url_for('static', filename=card.image_url[7:]) }}" alt="{{ card.title }}">
+                </a>
+                <h2>{{ card.title }}</h2>
+                {% if session.username %}
+                <p>{{ card.description }}</p>
+                <form method="post" action="/mark-done">
+                    <input type="hidden" name="region" value="{{ card.region }}">
+                    <input type="hidden" name="card_id" value="{{ card.id }}">
+                    <button type="submit" class="{% if card.id in completions %}done-button active{% else %}done-button{% endif %}">Done</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="card">
+                <a href="/card">
                     <img src="{{ url_for('static', filename='maapallo.jpg') }}" alt="10 Most Beautiful Castles in Germany">
                 </a>
                 <h2>10 Most Beautiful Castles in Germany</h2>
@@ -165,19 +191,21 @@
                     <input type="hidden" name="card_id" value="2"> 
                     <button type="submit" onclick="toggleDone(this)"> Done</button>
                    <!--  <input type="checkbox"> -->
-                </form>
-                
+                </form>     
                 {% endif %}
                 <p>Description of destination 1.</p>
             </div>
-            <!--<div class="card">
+             <!-- <div class="card">
+                <a href="/addcard">
                 <img src="https://via.placeholder.com/300x200" alt="Image">
+            </a>
                 <h2>Destination Name 2</h2>
                 <p>Description of destination 2.</p>
                 <button class="done-button" onclick="toggleDone(this)">Done</button>
-                <button class="like-button">❤</button>
-            </div>-->
+                <button class="like-button">❤</button> -->
+           
             <!-- Lisää samanlaisia kortteja tarvittaessa -->
+            </div>
         </section>
     </main>
     <footer>
