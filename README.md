@@ -5,7 +5,7 @@ Sovelluksessa näkyy mantereet listattuna sivupalkissa. Jokaisen mantereen alla 
 
 
 * Käyttäjä voi kirjautua sisään ja ulos ☑
-* Käyttäjä näkee mantereen (useita) ☑ → haasteet kuvauksineen (useita haasteita) ☑  → haasteen ja kartan ☑ 
+* Käyttäjä näkee mantereen (useita) ☑ → haasteet kuvauksineen (useita haasteita) ☑  → haasteen ja kartan 
 * Käyttäjä voi lisätä haasteita lempilistalleen, merkitä suoritetuksi ☑ (Extra: jakaa sosiaalisessa mediassa) ja nähdä yhteenveton haasteista omalla sivulla ☑.
 * Ylläpitäjä voi lisätä ja poistaa haasteita sekä määrittää haasteesta näytettävät tiedot. Ylläpitäjä voi tarvittaessa poistaa käyttäjän suorittaman haasteen.
 * Käyttäjä voi luoda ☑ ja muokata omia lisäämiään haasteita sekä määrittää näytettävät tiedot (paitsi kartta).
