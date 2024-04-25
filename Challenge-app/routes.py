@@ -3,7 +3,9 @@ import user
 import Polls
 import my_info
 import Card
+import utils
 from flask import render_template, request, redirect, session, url_for
+import os
 
 
 @app.route("/")
@@ -18,7 +20,15 @@ def index():
 
 @app.route("/Frontpage")
 def home():
-    return render_template("Frontpage.html")
+    cards = Card.get_all_cards()
+    user_id = session.get("user_id")
+
+    if user_id:
+        completions = Card.get_user_completions(user_id)
+    else:
+        completions = set()
+
+    return render_template("Frontpage.html", cards=cards, completions=completions)
 
 #User
 
@@ -129,10 +139,17 @@ def myinfo():
 
 #Card
 
-@app.route("/europe1")
+@app.route("/card")
 def europe():
-    return render_template("europe1.html")
+    return render_template("Challenge.html")
 
+@app.route("/Challenge/<int:card_id>/<region>")
+def show_card(card_id, region):
+    card = Card.get_card_by_id(card_id)
+    if card:
+        return render_template("Challenge.html", card=card, region=region)
+    else:
+        return "Card not found", 404
 
 @app.route("/mark-done", methods=["POST"])
 def mark_done():
@@ -141,10 +158,37 @@ def mark_done():
     
     user_id = session.get("user_id")
     region = request.form.get("region")
-    done = Card.mark_done(user_id, region)
+    card_id = request.form.get("card_id")
+    done = Card.mark_done(user_id, region, card_id)
     
 
     if done:
         return redirect("/Frontpage")
     else:
         return "Error", 400
+    
+
+@app.route("/addcard", methods=["GET"])
+def show_add_card_form():
+    # Tässä oletetaan, että sinulla on 'add_card.html' niminen template
+    return render_template("addcard.html")   
+    
+@app.route("/created", methods=["POST"])
+def create_card():
+
+
+    if request.method == "POST":
+        title = request.form['title']
+        description = request.form['description']
+        region = request.form['region']
+        file = request.files['image']
+
+    if file and utils.allowed_file(file.filename):
+        filename = utils.secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        Card.create_card(title, description, filepath, region)  # Kutsu card.py moduulin funktiota
+        return redirect("/Frontpage")
+    return "Error", 400
+
+  
