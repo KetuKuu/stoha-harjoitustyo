@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.debug = True
 
 
-# Määrittele tiedostojen tallennuspolku ja varmista, että kansio on olemassa
+#Tiedostojen tallennuspolku
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
