@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Rekisteröidy</h1>
+    <form action="/register" method="POST">
+        <p>Tunnus:<br>
+        <input type="text" name="username" required></p>
+        <p>Salasana:<br>
+        <input type="password" name="password1" required></p>
+        <p>Toista salasana:<br>
+        <input type="password" name="password2" required></p>
+        <input type="submit" value="Rekisteröidy">
+    </form>
+    <p>{{ error_message | safe }}</p>
+</body>
+</html>
