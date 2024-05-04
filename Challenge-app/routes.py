@@ -4,6 +4,7 @@ import Polls
 import my_info
 import Card
 import utils
+import card_update
 from flask import render_template, request, redirect, session, url_for
 import os
 
@@ -13,10 +14,6 @@ def index1():
     # Ohjaa käyttäjä Frontpage-näkymään
     return redirect(url_for("home")) 
 
-""" @app.route("/")
-def index():
-    sisalto =["Australia""/page1", "Afrikka""/page2", "Asia" ]
-    return render_template("index.html",message="Tervetuloa!", items=sisalto) """
 
 @app.route("/Frontpage")
 def home():
@@ -108,22 +105,6 @@ def resultKysely(id):
     return render_template("pollresults.html", topic=topic, choices=choices)
 
 
-# Order
-
-""" @app.route("/order")
-def order():
-
-    return render_template("order.html")
-
-@app.route("/result", methods=["POST"])
-def result():
-    pizza = request.form["pizza"]
-    extras = request.form.getlist("extra")
-    message = request.form["message"]
-    return render_template("result.html", pizza=pizza,
-                                          extras=extras,
-                                          message=message)"""
-
 # Task
 
 @app.route("/myinfo")
@@ -137,19 +118,7 @@ def myinfo():
     print(f"Debug: Completion count - {completion_count}")
     return render_template("myinfo.html", completion_count=completion_count)
 
-#Card
-
-@app.route("/card")
-def europe():
-    return render_template("Challenge.html")
-
-@app.route("/Challenge/<int:card_id>/<region>")
-def show_card(card_id, region):
-    card = Card.get_card_by_id(card_id)
-    if card:
-        return render_template("Challenge.html", card=card, region=region)
-    else:
-        return "Card not found", 404
+#Mark card 
 
 @app.route("/mark-done", methods=["POST"])
 def mark_done():
@@ -159,36 +128,69 @@ def mark_done():
     user_id = session.get("user_id")
     region = request.form.get("region")
     card_id = request.form.get("card_id")
-    done = Card.mark_done(user_id, region, card_id)
-    
+    done = Card.mark_done(user_id, region, card_id)   
 
     if done:
         return redirect("/Frontpage")
     else:
-        return "Error", 400
-    
+        return "Error", 400 
+
+
+#create card
 
 @app.route("/addcard", methods=["GET"])
 def show_add_card_form():
-    # Tässä oletetaan, että sinulla on 'add_card.html' niminen template
     return render_template("addcard.html")   
-    
+
+
 @app.route("/created", methods=["POST"])
 def create_card():
-
 
     if request.method == "POST":
         title = request.form['title']
         description = request.form['description']
         region = request.form['region']
         file = request.files['image']
+      
 
     if file and utils.allowed_file(file.filename):
         filename = utils.secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
-        Card.create_card(title, description, filepath, region)  # Kutsu card.py moduulin funktiota
+        Card.create_card(title, description, filepath, region, session['user_id'])  # Kutsu card.py moduulin funktiota
         return redirect("/Frontpage")
     return "Error", 400
 
-  
+
+#uptate card
+
+@app.route("/card_detail/<int:card_id>", methods=["GET"])
+def card_detail(card_id):
+    card = Card.get_card_by_id(card_id)
+    images = card_update.get_image_by_id(card_id)
+    print("Images data:", images)
+    if card:
+        print("Debug: Session User ID:", session.get('user_id'))
+        return render_template("challenge_detail.html", card = card, images = images) 
+    else:
+        return "Card not found", 404 
+
+@app.route("/update_image/<int:card_id>", methods=["POST"])
+def update_image(card_id):
+
+    if request.method == "POST":
+        image = request.files['image']
+        description = request.form['description']
+        title = request.form.get('title')
+
+    if image and utils.allowed_file(image.filename):
+        filename = utils.secure_filename(image.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        image.save(filepath)
+        
+        #tallennus
+        user_id = session.get("user_id")
+        card_update.update_image(card_id, user_id, filename, title, description) # Kutsu card_detail.py moduulin funktiota
+        return redirect(f"/card_detail/{card_id}")
+    return "Error", 400
+
