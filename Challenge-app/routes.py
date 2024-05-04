@@ -14,7 +14,6 @@ def index1():
     # Ohjaa käyttäjä Frontpage-näkymään
     return redirect(url_for("home")) 
 
-
 @app.route("/Frontpage")
 def home():
     cards = Card.get_all_cards()
@@ -27,8 +26,8 @@ def home():
 
     return render_template("Frontpage.html", cards=cards, completions=completions)
 
-#User
 
+#User
 
 @app.route("/loging", methods=["GET", "POST"])
 def login():
@@ -40,10 +39,8 @@ def login():
         if user.login(username, password):
             return redirect("/Frontpage")
         else:
-            #return render_template("error.html", message="Väärä tunnus tai salasana")
             error_message = "Väärä käyttäjätunnus tai salasana"
             return render_template("loging.html", error_message=error_message)  # Kirjautuminen epäonnistui, näytä virheviesti"""
-
 
 def user_id():
     return session.get("user_id", 0)
@@ -63,12 +60,11 @@ def register():
         else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
 
-
-
 @app.route("/logout")
 def logout():
     user.logout()
     return redirect("/Frontpage")
+
 
 #polls
 
@@ -118,6 +114,7 @@ def myinfo():
     print(f"Debug: Completion count - {completion_count}")
     return render_template("myinfo.html", completion_count=completion_count)
 
+
 #Mark card 
 
 @app.route("/mark-done", methods=["POST"])
@@ -162,7 +159,7 @@ def create_card():
     return "Error", 400
 
 
-#uptate card
+#update card
 
 @app.route("/card_detail/<int:card_id>", methods=["GET"])
 def card_detail(card_id):
