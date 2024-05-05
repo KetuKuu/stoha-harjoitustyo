@@ -47,9 +47,6 @@
         <img src="{{ url_for('static', filename=card.image_url[7:]) }}" alt="{{ card.title }}">
         <p>{{ card.description }}</p>
 
-        Session user_id: {{ session.get('user_id') }}
-        Card user_id: {{ card.user_id }}
-
         {% if session.get('user_id')|int == card.user_id %}
      
         <div>

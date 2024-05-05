@@ -6,15 +6,15 @@
     <title>Register</title>
 </head>
 <body>
-    <h1>Rekisteröidy</h1>
+    <h1>Create a user</h1>
     <form action="/register" method="POST">
-        <p>Tunnus:<br>
+        <p>Username:<br>
         <input type="text" name="username" required></p>
-        <p>Salasana:<br>
+        <p>Password:<br>
         <input type="password" name="password1" required></p>
-        <p>Toista salasana:<br>
+        <p>Repeat password:<br>
         <input type="password" name="password2" required></p>
-        <input type="submit" value="Rekisteröidy">
+        <input type="submit" value="Sign up">
     </form>
     <p>{{ error_message | safe }}</p>
 </body>
