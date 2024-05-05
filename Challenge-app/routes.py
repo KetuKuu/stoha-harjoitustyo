@@ -54,12 +54,29 @@ def register():
         username = request.form["username"]
         password1 = request.form["password1"]
         password2 = request.form["password2"]
+
         if password1 != password2:
-            return render_template("error.html", message="Salasanat eroavat")
+            error_message = "Salasanat eivät täsmää."
+            return render_template("register.html", error_message=error_message)
+        
+        if len(username) < 5 or len (username) > 20:
+            error_message = "Käyttäjätunnus tulee olla vähintään 5 ja ei saa olla pidempi kuin 20 merkkiä"
+            return render_template("register.html", error_message=error_message)
+        
+        if len(password1) < 5:
+            error_message = "Salasanan tulee olla vähintään 5 merkkiä"
+            return render_template("register.html", error_message=error_message)
+
         if user.register(username, password1):
             return redirect("/Frontpage")
         else:
-            return render_template("error.html", message="Rekisteröinti ei onnistunut")
+            error_message = "Käyttäjätunnus on jo olemassa."
+            return render_template("register.html", error_message=error_message)
+
+
+
+
+
 
 @app.route("/logout")
 def logout():
