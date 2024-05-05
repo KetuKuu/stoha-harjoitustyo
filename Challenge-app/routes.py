@@ -5,6 +5,7 @@ import my_info
 import Card
 import utils
 import card_update
+import tasks
 from flask import render_template, request, redirect, session, url_for
 import os
 
@@ -20,14 +21,14 @@ def home():
     user_id = session.get("user_id")
 
     if user_id:
-        completions = Card.get_user_completions(user_id)
+        completions = tasks.get_user_completions(user_id)
     else:
         completions = set()
 
     return render_template("Frontpage.html", cards=cards, completions=completions)
 
 
-#User
+#user
 
 @app.route("/loging", methods=["GET", "POST"])
 def login():
@@ -40,7 +41,7 @@ def login():
             return redirect("/Frontpage")
         else:
             error_message = "Väärä käyttäjätunnus tai salasana"
-            return render_template("loging.html", error_message=error_message)  # Kirjautuminen epäonnistui, näytä virheviesti"""
+            return render_template("loging.html", error_message=error_message) 
 
 def user_id():
     return session.get("user_id", 0)
@@ -101,21 +102,19 @@ def resultKysely(id):
     return render_template("pollresults.html", topic=topic, choices=choices)
 
 
-# Task
+# task
 
 @app.route("/myinfo")
 def myinfo():
     user_id = session.get("user_id")
-    print(f"Debug: User ID from session - {user_id}")
     if user_id is None:
         return redirect("/login")
 
     completion_count = my_info.get_user_completions(user_id)
-    print(f"Debug: Completion count - {completion_count}")
     return render_template("myinfo.html", completion_count=completion_count)
 
 
-#Mark card 
+#mark card 
 
 @app.route("/mark-done", methods=["POST"])
 def mark_done():
@@ -125,7 +124,8 @@ def mark_done():
     user_id = session.get("user_id")
     region = request.form.get("region")
     card_id = request.form.get("card_id")
-    done = Card.mark_done(user_id, region, card_id)   
+    #done = Card.mark_done(user_id, region, card_id)   
+    done = tasks.mark_done_get(user_id, region, card_id)  
 
     if done:
         return redirect("/Frontpage")
@@ -165,9 +165,7 @@ def create_card():
 def card_detail(card_id):
     card = Card.get_card_by_id(card_id)
     images = card_update.get_image_by_id(card_id)
-    print("Images data:", images)
     if card:
-        print("Debug: Session User ID:", session.get('user_id'))
         return render_template("challenge_detail.html", card = card, images = images) 
     else:
         return "Card not found", 404 
