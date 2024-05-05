@@ -74,10 +74,6 @@ def register():
             return render_template("register.html", error_message=error_message)
 
 
-
-
-
-
 @app.route("/logout")
 def logout():
     user.logout()
@@ -174,6 +170,15 @@ def create_card():
         Card.create_card(title, description, filepath, region, session['user_id'])  # Kutsu card.py moduulin funktiota
         return redirect("/Frontpage")
     return "Error", 400
+
+
+@app.route('/delete_card/<int:card_id>', methods=['POST'])
+def delete_card(card_id):
+    Card.remove_card(card_id)
+    return redirect("/Frontpage")
+
+
+
 
 
 #update card
