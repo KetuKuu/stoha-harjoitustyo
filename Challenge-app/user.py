@@ -26,7 +26,15 @@ def login (username, password):
 
 
 def register (username, password):
+    # tarkistus ennen tallentamista
+    if len(username) < 5 or len (username) > 20:
+        return False
+    
+    if len(password) < 5:
+        return False
 
+    # Jos käyttäjätunnus on jo olemassa
+    
     sql = "SELECT id, password FROM users WHERE username=:username"
     result = db.session.execute(text(sql), {"username":username})
     user = result.fetchone()
