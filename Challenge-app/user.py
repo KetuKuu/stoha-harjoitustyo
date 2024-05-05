@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, session, request, render_template, redirect
 from flask import render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
@@ -6,6 +6,7 @@ from os import getenv
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import db
 from datetime import datetime
+import secrets
 
 
 def login (username, password):
@@ -19,11 +20,10 @@ def login (username, password):
         if check_password_hash(user.password, password):
             session["username"] = username 
             session["user_id"] = user.id
+            session['csrf_token'] = secrets.token_hex(16) 
             return True
         else:
             return False
-
-
 
 def register (username, password):
     # tarkistus ennen tallentamista
