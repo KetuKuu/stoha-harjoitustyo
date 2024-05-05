@@ -39,11 +39,3 @@ def remove_card(card_id):
 
 
 
-def get_cards_by_continent(continent):
-    sql = "SELECT id, title, description, image_url, region, created_at FROM cards WHERE region = :region ORDER BY created_at DESC"
-    result = db.session.execute(text(sql), {'region': continent})
-    cards = result.fetchall()
-    return cards
-
-
-
