@@ -1,15 +1,77 @@
-<form method="POST" action="/created" enctype="multipart/form-data">
-    <input type="text" name="title" placeholder="Title" required>
-    <textarea name="description" placeholder="Description" required></textarea>
-    <select name="region" required>
-        <option value="">Valitse alue</option>
-        <option value="Europe">Europe</option>
-        <option value="Asia">Asia</option>
-        <option value="North America">North America</option>
-        <option value="South America">South America</option>
-        <option value="Australia and Oceania">Australia and Oceania</option>
-        <option value="Africa">Africa</option>
-    </select>
-    <input type="file" name="image" accept="image/*" required>
-    <button type="submit">Luo haaste</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel with us</title>
+    <style>
+        /* CSS-tyylit */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            display: flex; /* Asetetaan flex-container */
+            flex-direction: column; /* Asetetaan pystysuuntainen järjestys */
+            min-height: 100vh; /* Varmistetaan, että sivu täyttää näytön korkeuden */
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .top-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .top-links a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+        }
+        .top-links a.active {
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Travel Bucket List Challenge</h1>
+    </header>
+    
+    <div class="top-links">
+        {% if session.get("username") %}
+        <p><a href="/Frontpage" class="active">Home</a></p>
+        <p><a href="/myinfo">Mypages</a></p>
+        <p><a href="/polls">Polls</a></p>
+        <a>You are logged in as {{ session.username }}</a>
+        <p><a href="/logout">Log Out</a></p>
+        {% else %}
+        <p>To create your own challenge and to track the performance of other challenges, you need to log in or create a username if you do not yet have an account.</p>
+        <a href="/loging">Sign In</a>        
+        {% endif %}
+    </div>
+    <div class="challenge-form"></div>
+        <form method="POST" action="/created" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+            <select name="region" required>
+                <option value="">Select a continent</option>
+                <option value="Europe">Europe</option>
+                <option value="Asia">Asia</option>
+                <option value="North America">North America</option>
+                <option value="South America">South America</option>
+                <option value="Australia and Oceania">Australia and Oceania</option>
+                <option value="Africa">Africa</option>
+            </select>
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Create a challenge</button>
+        </form>
+    </div>
+</body>
+</html>

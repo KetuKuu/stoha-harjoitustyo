@@ -119,7 +119,8 @@
         <a>You are logged in as {{ session.username }}</a>
         <p><a href="/logout">Log Out</a></p>
         {% else %}
-        <p><a href="/loging">Sign In</a></p>
+        <p>To create your own challenge and to track the performance of other challenges, you need to log in or create a username if you do not yet have an account.</p>
+        <a href="/loging">Sign In</a>        
         {% endif %}
     </div>
     <main>
@@ -144,6 +145,7 @@
                 <img src="https://via.placeholder.com/300x200" alt="Image">
             </a>
                 <h2>Add your challenge</h2>
+                <p>You can complete your challenge after adding it by pressing the icon that appears on the homepage.</p>
            
             <!-- lisäätään staatisesti käyttäjän lomaken tiedot card luokkaan -->
             </div>
@@ -163,6 +165,7 @@
                     <button type="submit" class="{% if card.id in completions %}done-button active{% else %}done-button{% endif %}">Done</button>
                 </form>
                 {% endif %}
+                           
             </div>
             {% endfor %}
         </section>

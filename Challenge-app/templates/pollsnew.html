@@ -1,13 +1,92 @@
-<form action="/create" method="POST">
-    <p>Aihe:<br>
-    <input type="text" name="topic"></p>
-    <p>Vaihtoehto 1:<br>
-    <input type="text" name="choice"></p>
-    <p>Vaihtoehto 2:<br>
-    <input type="text" name="choice"></p>
-    <p>Vaihtoehto 3:<br>
-    <input type="text" name="choice"></p>
-    <p>Vaihtoehto 4:<br>
-    <input type="text" name="choice"></p>
-    <input type="submit" value="Luo kysely">
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel with us</title>
+    <style>
+        /* CSS-tyylit */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            display: flex; /* Asetetaan flex-container */
+            flex-direction: column; /* Asetetaan pystysuuntainen järjestys */
+            min-height: 100vh; /* Varmistetaan, että sivu täyttää näytön korkeuden */
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .top-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .top-links a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+        }
+        .top-links a.active {
+            font-weight: bold;
+        }
+
+        .create-poll-section textarea {
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+            box-sizing: border-box; 
+            margin-bottom: 10px; 
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Travel Bucket List Challenge</h1>
+    </header>
+    
+    <div class="top-links">
+        {% if session.get("username") %}
+        <p><a href="/Frontpage" class="active">Home</a></p>
+        <p><a href="/myinfo">Mypages</a></p>
+        <p><a href="/polls">Polls</a></p>
+        <a>You are logged in as {{ session.username }}</a>
+        <p><a href="/logout">Log Out</a></p>
+        {% else %}
+        <p>To create your own challenge and to track the performance of other challenges, you need to log in or create a username if you do not yet have an account.</p>
+        <a href="/loging">Sign In</a>        
+        {% endif %}
+    </div>
+    <div class="create-poll-section">
+            <form action="/create" method="POST">
+                <p>Topic:<br>
+                <input type="text" name="topic"></p>
+                <p>Option 1:<br>
+                <input type="text" name="choice"></p>
+                <p>Option 2:<br>
+                <input type="text" name="choice"></p>
+                <p>Option 3:<br>
+                <input type="text" name="choice"></p>
+                <p>Option 4:<br>
+                <input type="text" name="choice"></p>
+                <input type="submit" value="Create poll">
+                </form>
+        </form>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
