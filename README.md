@@ -14,31 +14,32 @@ Sovelluksessa näkyy mantereet listattuna sivupalkissa. Jokaisen mantereen alla 
 * Ylläpitäjä voi luoda kategorioita, joihin haasteet voi luokitella. Haaste voi kuulua yhteen tai useampaan kategoriaan.
 
 # Käynistysohjeet
-1. Kloonaa tämä repositorio omalle koneellesi ja siirry Challenge-app kansioon.
-2. Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
+
+1. Avaa terminaalissa kansio, johon haluat kloonata projektin ja käytä komentoa: 
+	
+	`git clone https://github.com/KetuKuu/stoha-harjoitustyo.git`
+
+2. Siirry Challenge-app kansioon.
+
+3. Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
    
    `DATABASE_URL=<tietokannan-paikallinen-osoite>`
 
    `SECRET_KEY=<salainen-avain>`
 
 
-3. Seuraavaksi aktivoi virtuaaliympäristö ja asenna sovelluksen riippuvuudet komennoilla
+4. Seuraavaksi aktivoi virtuaaliympäristö ja asenna sovelluksen riippuvuudet komennoilla
    
    **<p>$ python3 -m venv venv</p>**
    **<p>$ source venv/bin/activate</p>**
-   **<p>$ pip install -r ./requirements.txt</p>**
+   **<p>$ pip install -r config/requirements.txt</p>**
 
-4. Määritä vielä tietokannan skeema komennolla
+5. Määritä vielä tietokannan skeema komennolla
    
-   **<p>psql < schemaPolls.sql</p>**
-   **<p>psql < schemaUser.sql</p>**
-
-5. Voit asentaa virtuaaliympäristöönsä tarvittavat kirjastot seuraavalla komennolla:
-   
-   **pip install -r requirements.txt**
-
+   **<p>psql < config/schema.sql</p>**
+  
 6. Nyt voit käynnistää sovelluksen komennolla
-   
+  
    **$ flask run**
 
 # Nykyinen tilanne
