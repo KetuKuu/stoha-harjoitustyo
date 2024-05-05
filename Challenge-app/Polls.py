@@ -7,9 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
 from db import db
 
-#sivu 2 sisältö 
-
-
+#Polls
 def get_polls():
 
     sql = "SELECT id, topic, created_at FROM polls ORDER BY id DESC"

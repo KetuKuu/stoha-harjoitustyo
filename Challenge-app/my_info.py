@@ -15,4 +15,4 @@ def get_user_completions(user_id):
     result_done = db.session.execute(sql, {"user_id": user_id})
     completion_count = result_done.fetchall()
     return {row.region: row.count for row in completion_count}
-    #return {row['region']: row['count'] for row in completion_count}
+   
