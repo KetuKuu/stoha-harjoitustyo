@@ -26,5 +26,24 @@ def get_card_by_id(card_id):
     print("Debug card info:", card)
     return card
 
+def remove_card(card_id):
+    #riippuvuudet completitions
+    sql = "DELETE FROM completions WHERE card_id = :card_id"
+    db.session.execute(text(sql), {"card_id": card_id})
+    db.session.commit()
+    #poisto cards
+    sql = "DELETE FROM cards WHERE id = :card_id"
+    db.session.execute(text(sql), {"card_id": card_id})
+    db.session.commit()
+
+
+
+
+def get_cards_by_continent(continent):
+    sql = "SELECT id, title, description, image_url, region, created_at FROM cards WHERE region = :region ORDER BY created_at DESC"
+    result = db.session.execute(text(sql), {'region': continent})
+    cards = result.fetchall()
+    return cards
+
 
 
